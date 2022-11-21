@@ -19,15 +19,51 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+	//	thymeleaf
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-java8time:3.0.4.RELEASE'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
-	compileOnly 'org.projectlombok:lombok'
+
+	//	web
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+
+	//	db
 	runtimeOnly 'org.postgresql:postgresql'
+
+	//	entity
+	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'org.hibernate:hibernate-core'
+	implementation 'javax.validation:validation-api'
+
+	//	test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '5.6.3'
+	implementation 'junit:junit:4.13.1'
+
+	//	security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	//	email
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	// JSON
+	implementation 'org.json:json:20220320'
+
+
+	// swagger
+	implementation('org.springdoc:springdoc-openapi-ui:1.6.9')
+
+	// websocket
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+
+
+
 }
 
 tasks.named('test') {

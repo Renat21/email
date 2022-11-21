@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>colored inbox mail list and compose - Bootdey.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="/sender/css/messages.css" type="text/css" rel="stylesheet">
+	<link href="/index/style/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container bootstrap snippets bootdeys">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <!--mail inbox start-->
+            <div class="mail-box">
+                <aside class="sm-side">
+                    <div class="user-head">
+                        <a href="javascript:;" class="inbox-avatar">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="img-responsive">
+                        </a>
+                        <div class="user-name">
+                            <h5><a href="#">Jonathan Smith</a></h5>
+                            <span><a href="#">jsmith@gmail.com</a></span>
+                        </div>
+                        <a href="javascript:;" class="mail-dropdown pull-right">
+                            <i class="fa fa-chevron-down"></i>
+                        </a>
+                    </div>
+                    <div class="inbox-body">
+                        <a class="btn btn-compose" href="/messages">
+                            Compose
+                        </a>
+                    </div>
+
+                    <ul class="inbox-nav inbox-divider">
+                        <li class="active">
+                            <a href="#"><i class="fa fa-inbox"></i> Inbox <span class="label label-danger pull-right">2</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-envelope-o"></i> Sent Mail</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bookmark-o"></i> Important</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class=" fa fa-external-link"></i> Drafts <span class="label label-info pull-right">30</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class=" fa fa-trash-o"></i> Trash</a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked labels-info inbox-divider">
+                        <li> <h4>Labels</h4> </li>
+                        <li> <a href="#"> <i class=" fa fa-sign-blank text-danger"></i> Work </a> </li>
+                        <li> <a href="#"> <i class=" fa fa-sign-blank text-success"></i> Design </a> </li>
+                        <li> <a href="#"> <i class=" fa fa-sign-blank text-info "></i> Family </a>
+                        </li><li> <a href="#"> <i class=" fa fa-sign-blank text-warning "></i> Friends </a>
+                        </li><li> <a href="#"> <i class=" fa fa-sign-blank text-primary "></i> Office </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked labels-info ">
+                        <li> <h4>Buddy online</h4> </li>
+                        <li> <a href="#"> <i class=" fa fa-circle text-success"></i> Jhone Doe <p>I do not think</p></a>  </li>
+                        <li> <a href="#"> <i class=" fa fa-circle text-danger"></i> Sumon <p>Busy with coding</p></a> </li>
+                        <li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Anjelina Joli <p>I out of control</p></a>
+                        </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Jonathan Smith <p>I am not here</p></a>
+                        </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Tawseef <p>I do not think</p></a>
+                        </li>
+                    </ul>
+                    <div class="inbox-body text-center">
+                        <div class="btn-group">
+                            <a href="javascript:;" class="btn mini btn-primary" data-original-title="" title="">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <a href="javascript:;" class="btn mini btn-success" data-original-title="" title="">
+                                <i class="fa fa-phone"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <a href="javascript:;" class="btn mini btn-info" data-original-title="" title="">
+                                <i class="fa fa-cog"></i>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+                <aside class="lg-side">
+                <div class="inbox-head">
+                    <h3>Inbox</h3>
+                    <form class="pull-right position" action="#">
+                        <div class="input-append">
+                            <input type="text" placeholder="Search Mail" class="sr-input">
+                            <button type="button" class="btn sr-btn" data-original-title="" title=""><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="inbox-body">
+					<div class="col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-body message">
+								<p class="text-center">New Message</p>
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="to" class="col-sm-1 control-label">To:</label>
+										<div class="col-sm-11">
+											  <input type="email" class="form-control select2-offscreen" id="to" placeholder="Type email" tabindex="-1">
+										</div>
+									  </div>
+									<div class="form-group">
+										<label for="cc" class="col-sm-1 control-label">CC:</label>
+										<div class="col-sm-11">
+											  <input type="email" class="form-control select2-offscreen" id="cc" placeholder="Type email" tabindex="-1">
+										</div>
+									  </div>
+									<div class="form-group">
+										<label for="bcc" class="col-sm-1 control-label">BCC:</label>
+										<div class="col-sm-11">
+											  <input type="email" class="form-control select2-offscreen" id="bcc" placeholder="Type email" tabindex="-1">
+										</div>
+									  </div>
+								  
+								</form>
+								
+								<div class="col-sm-11 col-sm-offset-1">
+									
+									<div class="btn-toolbar" role="toolbar">
+										
+										<div class="btn-group">
+											  <button class="btn btn-default"><span class="fa fa-bold"></span></button>
+											  <button class="btn btn-default"><span class="fa fa-italic"></span></button>
+											<button class="btn btn-default"><span class="fa fa-underline"></span></button>
+										</div>
+				
+										<div class="btn-group">
+											  <button class="btn btn-default"><span class="fa fa-align-left"></span></button>
+											  <button class="btn btn-default"><span class="fa fa-align-right"></span></button>
+											  <button class="btn btn-default"><span class="fa fa-align-center"></span></button>
+											<button class="btn btn-default"><span class="fa fa-align-justify"></span></button>
+										</div>
+										
+										<div class="btn-group">
+											  <button class="btn btn-default"><span class="fa fa-indent"></span></button>
+											  <button class="btn btn-default"><span class="fa fa-outdent"></span></button>
+										</div>
+										
+										<div class="btn-group">
+											  <button class="btn btn-default"><span class="fa fa-list-ul"></span></button>
+											  <button class="btn btn-default"><span class="fa fa-list-ol"></span></button>
+										</div>
+										<button class="btn btn-default"><span class="fa fa-trash-o"></span></button>	
+										<button class="btn btn-default"><span class="fa fa-paperclip"></span></button>
+										<div class="btn-group">
+											<button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="fa fa-tags"></span> <span class="caret"></span></button>
+											<ul class="dropdown-menu">
+												<li><a href="#">add label <span class="label label-danger"> Home</span></a></li>
+												<li><a href="#">add label <span class="label label-info">Job</span></a></li>
+												<li><a href="#">add label <span class="label label-success">Clients</span></a></li>
+												<li><a href="#">add label <span class="label label-warning">News</span></a></li>
+											</ul>
+										</div>
+									</div>
+									<br>	
+									
+									<div class="form-group">
+										<textarea class="form-control" id="message" name="body" rows="12" placeholder="Click here to reply"></textarea>
+									</div>
+									
+									<div class="form-group">	
+										<button type="submit" class="btn btn-success">Send</button>
+										<button type="submit" class="btn btn-default">Draft</button>
+										<button type="submit" class="btn btn-danger">Discard</button>
+									</div>
+								</div>	
+							</div>	
+						</div>	
+					</div><!--/.col-->	
+                </div>
+                </aside>
+</div>
+        <!--mail inbox end-->
+        </div>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

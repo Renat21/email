@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>colored inbox mail list and compose - Bootdey.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="/sender/css/messages.css" type="text/css" rel="stylesheet">
+    <link href="/index/style/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container bootstrap snippets bootdeys">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box">
+                <!--mail inbox start-->
+                <div class="mail-box">
+                    <aside class="sm-side">
+                        <div class="user-head">
+                            <a href="javascript:;" class="inbox-avatar">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="img-responsive">
+                            </a>
+                            <div class="user-name">
+                                <h5><a href="#">Jonathan Smith</a></h5>
+                                <span><a href="#">jsmith@gmail.com</a></span>
+                            </div>
+                            <a href="javascript:;" class="mail-dropdown pull-right">
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </div>
+                        <div class="inbox-body">
+                            <a class="btn btn-compose" href="/messages">
+                                Compose
+                            </a>
+                        </div>
+
+                        <ul class="inbox-nav inbox-divider">
+                            <li class="active">
+                                <a href="#"><i class="fa fa-inbox"></i> Inbox <span class="label label-danger pull-right">2</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-envelope-o"></i> Sent Mail</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-bookmark-o"></i> Important</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class=" fa fa-external-link"></i> Drafts <span class="label label-info pull-right">30</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class=" fa fa-trash-o"></i> Trash</a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-pills nav-stacked labels-info inbox-divider">
+                            <li> <h4>Labels</h4> </li>
+                            <li> <a href="#"> <i class=" fa fa-sign-blank text-danger"></i> Work </a> </li>
+                            <li> <a href="#"> <i class=" fa fa-sign-blank text-success"></i> Design </a> </li>
+                            <li> <a href="#"> <i class=" fa fa-sign-blank text-info "></i> Family </a>
+                            </li><li> <a href="#"> <i class=" fa fa-sign-blank text-warning "></i> Friends </a>
+                        </li><li> <a href="#"> <i class=" fa fa-sign-blank text-primary "></i> Office </a>
+                        </li>
+                        </ul>
+                        <ul class="nav nav-pills nav-stacked labels-info ">
+                            <li> <h4>Buddy online</h4> </li>
+                            <li> <a href="#"> <i class=" fa fa-circle text-success"></i> Jhone Doe <p>I do not think</p></a>  </li>
+                            <li> <a href="#"> <i class=" fa fa-circle text-danger"></i> Sumon <p>Busy with coding</p></a> </li>
+                            <li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Anjelina Joli <p>I out of control</p></a>
+                            </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Jonathan Smith <p>I am not here</p></a>
+                        </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Tawseef <p>I do not think</p></a>
+                        </li>
+                        </ul>
+                        <div class="inbox-body text-center">
+                            <div class="btn-group">
+                                <a href="javascript:;" class="btn mini btn-primary" data-original-title="" title="">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                            <div class="btn-group">
+                                <a href="javascript:;" class="btn mini btn-success" data-original-title="" title="">
+                                    <i class="fa fa-phone"></i>
+                                </a>
+                            </div>
+                            <div class="btn-group">
+                                <a href="javascript:;" class="btn mini btn-info" data-original-title="" title="">
+                                    <i class="fa fa-cog"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </aside>
+                    <aside class="lg-side">
+                        <div class="inbox-head">
+                            <h3>Inbox</h3>
+                            <form class="pull-right position" action="#">
+                                <div class="input-append">
+                                    <input type="text" placeholder="Search Mail" class="sr-input">
+                                    <button type="button" class="btn sr-btn" data-original-title="" title=""><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="inbox-body">
+                            <div class="col-md-10" style="margin-left: 89px">
+                                <div class="panel panel-default">
+                                    <form class="form-horizontal padding-10"
+                                          th:action="@{/edit/profile} "
+                                          th:method="POST">
+                                        <h4 style="padding-left: 40px">Смена профиля</h4>
+                                        <div th:if="${errorCurrentPassword}">
+                                            <div class="alert alert-danger">
+                                                Неверный текущий пароль
+                                            </div>
+                                        </div>
+                                        <div th:if="${errorPassword}">
+                                            <div class="alert alert-danger">
+                                                Новые пароли не совпадают
+                                            </div>
+                                        </div>
+                                        <div th:if="${passwordChanged}">
+                                            <div class="alert alert-success">
+                                                Пароль изменен
+                                            </div>
+                                        </div>
+                                        <fieldset class="mb-xl">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="username">Никнейм</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" id="username"
+                                                           name="username">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="name">Имя</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" id="name"
+                                                           name="name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="surname">Фамилия</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control"
+                                                           id="surname"
+                                                           name="surname">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <div class="row">
+                                            <div class="col-md-9 col-md-offset-3">
+                                                <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                                                <button type="reset" class="btn btn-default">Сбросить</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <hr>
+                                    <form class="form-horizontal padding-10" enctype="multipart/form-data"
+                                          th:action="@{/edit/photo} "
+                                          th:method="POST">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <div class="sky-form">
+                                                    <label class="col-xs-3 control-label">Фотография</label>
+                                                    <div class="col-md-8">
+                                                        <label for="file" class="input input-file">
+                                                            <div class="button">
+                                                                <input type="file" id="file" accept="image/*" name="file">
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <div class="row">
+                                            <div class="col-md-9 col-md-offset-3">
+                                                <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <hr>
+
+
+                                    <form class="form-horizontal padding-10"
+                                          th:action="@{/edit/password} "
+                                          th:method="POST">
+                                        <h4 style="padding-left: 40px">Смена пароля</h4>
+                                        <div th:if="${errorCurrentPassword}">
+                                            <div class="alert alert-danger">
+                                                Неверный текущий пароль
+                                            </div>
+                                        </div>
+                                        <div th:if="${errorPassword}">
+                                            <div class="alert alert-danger">
+                                                Новые пароли не совпадают
+                                            </div>
+                                        </div>
+                                        <div th:if="${passwordChanged}">
+                                            <div class="alert alert-success">
+                                                Пароль изменен
+                                            </div>
+                                        </div>
+                                        <fieldset class="mb-xl">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="profileNewPassword">Текущий
+                                                    Пароль</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" id="profileNewPassword"
+                                                           name="currentPassword">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="profileNewPasswordRepeat">Новый
+                                                    Пароль</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" id="profileNewPasswordRepeat"
+                                                           name="newPassword">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="profileNewPasswordRepeat">Повторите
+                                                    Пароль</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control"
+                                                           id="profileConfirmPasswordRepeat"
+                                                           name="passwordConfirm">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <div class="row">
+                                            <div class="col-md-9 col-md-offset-3">
+                                                <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                                                <button type="reset" class="btn btn-default">Сбросить</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div><!--/.col-->
+                        </div>
+                    </aside>
+                </div>
+                <!--mail inbox end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
