@@ -9,7 +9,11 @@
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href="/index/style/style.css" type="text/css" rel="stylesheet">
+    <link href="/sender/css/messages.css" type="text/css" rel="stylesheet">
+	<link href="/index/style/style.css" type="text/css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -26,8 +30,8 @@
                                 'https://bootdey.com/img/Content/avatar/avatar1.png'}" alt="" class="img-responsive">
                         </a>
                         <div class="user-name">
-                            <h5><a href="/profile">Jonathan Smith</a></h5>
-                            <span><a href="/profile">jsmith@gmail.com</a></span>
+                            <h5><a href="#">Jonathan Smith</a></h5>
+                            <span><a href="#">jsmith@gmail.com</a></span>
                         </div>
                         <a href="javascript:;" class="mail-dropdown pull-right">
                             <i class="fa fa-chevron-down"></i>
@@ -47,10 +51,10 @@
                             <a href="#"><i class="fa fa-envelope-o"></i> Sent Mail</a>
                         </li>
                         <li>
-                            <a href="/profile"><i class="fa fa-bookmark-o"></i> Profile</a>
+                            <a href="#"><i class="fa fa-bookmark-o"></i> Important</a>
                         </li>
                         <li>
-                            <a href="/friends"><i class=" fa fa-external-link"></i> Friends</a>
+                            <a href="#"><i class=" fa fa-external-link"></i> Drafts <span class="label label-info pull-right">30</span></a>
                         </li>
                         <li>
                             <a href="#"><i class=" fa fa-trash-o"></i> Trash</a>
@@ -103,65 +107,55 @@
                     </form>
                 </div>
                 <div class="inbox-body">
-                <div class="mail-option">
-                    <div class="chk-all">
-                        <input type="checkbox" class="mail-checkbox mail-group-checkbox">
-                        <div class="btn-group">
-                            <a class="btn mini all" href="#" data-toggle="dropdown" data-original-title="" title="">
-                                All
-                                <i class="fa fa-angle-down "></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#"> None</a></li>
-                                <li><a href="#"> Read</a></li>
-                                <li><a href="#"> Unread</a></li>
-                            </ul>
+                    <div class="heading-inbox row">
+                        <div class="col-md-8">
+                            <div class="compose-btn">
+                                <a class="btn btn-sm btn-primary" href="mail_compose.html" data-original-title="" title=""><i class="fa fa-reply"></i> Reply</a>
+                                <button title="" data-placement="top" data-toggle="tooltip" type="button" data-original-title="Print" class="btn  btn-sm tooltips"><i class="fa fa-print"></i> </button>
+                                <button title="" data-placement="top" data-toggle="tooltip" data-original-title="Trash" class="btn btn-sm tooltips"><i class="fa fa-trash-o"></i></button>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <p id = "messageDate" class="date"></p>
+                        </div>
+                        <div class="col-md-12">
+                            <h4></h4>
                         </div>
                     </div>
-                    <div class="btn-group">
-                        <a class="btn mini tooltips" href="#" data-toggle="dropdown" data-placement="top" data-original-title="Refresh">
-                            <i class=" fa fa-refresh"></i>
-                        </a>
+                    <div class="sender-info">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img alt="" src="https://bootdey.com/img/Content/avatar/avatar6.png">
+                                <strong id="messageFromName"></strong>
+                                <span id="messageFromEmail"></span>
+                                to
+                                <strong>me</strong>
+                                <a class="sender-dropdown " href="javascript:;">
+                                    <i class="fa fa-chevron-down"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="btn-group hidden-phone">
-                        <a class="btn mini blue" href="#" data-toggle="dropdown" data-original-title="" title="">
-                            More
-                            <i class="fa fa-angle-down "></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
-                            <li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn mini blue" href="#" data-toggle="dropdown" data-original-title="" title="">
-                            Move to
-                            <i class="fa fa-angle-down "></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
-                            <li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                        </ul>
-                    </div>
-                    <ul class="unstyled inbox-pagination">
-                        <li><span>1-50 of 234</span></li>
-                        <li>
-                            <a href="#" class="np-btn"><i class="fa fa-angle-left  pagination-left"></i></a>
-                        </li>
-                        <li>
-                            <a href="#" class="np-btn"><i class="fa fa-angle-right pagination-right"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                    <table class="table table-inbox table-hover">
-                        <tbody class="messages">
+                    <div class="view-mail">
 
-                        </tbody>
-                    </table>
+                    </div>
+                    <div class="attachment-mail">
+                        <p>
+                            <span id="countAttachments"><i class="fa fa-paperclip"></i></span>
+                            <a href="#">Download all attachments</a>
+                            |
+                            <a href="#">View all images</a>
+                        </p>
+                        <ul id="attachmentsArray">
+
+                        </ul>
+                    </div>
+                    <div class="compose-btn pull-left">
+                        <a class="btn btn-sm btn-primary" href="mail_compose.html" data-original-title="" title=""><i class="fa fa-reply"></i> Reply</a>
+                        <button class="btn btn-sm " data-original-title="" title=""><i class="fa fa-arrow-right"></i> Forward</button>
+                        <button title="" data-placement="top" data-toggle="tooltip" type="button" data-original-title="Print" class="btn  btn-sm tooltips"><i class="fa fa-print"></i> </button>
+                        <button title="" data-placement="top" data-toggle="tooltip" data-original-title="Trash" class="btn btn-sm tooltips"><i class="fa fa-trash-o"></i></button>
+                    </div>
                 </div>
                 </aside>
 </div>
@@ -171,11 +165,14 @@
 </div>
 </div>
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
 <script th:inline="javascript">
     currentUser = /*[[${user}]]*/ 'false';
+    message = /*[[${message}]]*/ 'false';
 </script>
-<script src="/index/js/messages.js"></script>
+<script src="/inbox/js/script.js"></script>
 </body>
 </html>

@@ -5,18 +5,18 @@ body {
     height: 100vh;
 }
 #login .container #login-row #login-column #login-box {
-    margin-top: 40px;
-    max-width: 600px;
-    height: 350px;
+    margin-top: 120px;
+    max-width: 410px;
+    height: 335px;
     border: 1px solid #9C9C9C;
-    background-color: #494993;
+    background-color: #2980b9;
 }
 .text-my {
     color: #faf3f2 !important;
 }
 
 #login .container #login-row #login-column #login-box #login-form {
-    padding: 20px;
+    padding: 18px;
 }
 #login .container #login-row #login-column #login-box #login-form #register-link {
     margin-top: -85px;

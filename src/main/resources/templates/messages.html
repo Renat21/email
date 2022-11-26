@@ -11,6 +11,9 @@
 	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="/sender/css/messages.css" type="text/css" rel="stylesheet">
 	<link href="/index/style/style.css" type="text/css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -23,7 +26,8 @@
                 <aside class="sm-side">
                     <div class="user-head">
                         <a href="javascript:;" class="inbox-avatar">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="img-responsive">
+                            <img th:src="${user.image!=null ? '/image/' + user.image.getId() :
+                                'https://bootdey.com/img/Content/avatar/avatar1.png'}" alt="" class="img-responsive">
                         </a>
                         <div class="user-name">
                             <h5><a href="#">Jonathan Smith</a></h5>
@@ -107,79 +111,77 @@
 						<div class="panel panel-default">
 							<div class="panel-body message">
 								<p class="text-center">New Message</p>
-								<form class="form-horizontal" role="form">
+								<div class="form-horizontal" role="form">
 									<div class="form-group">
-										<label for="to" class="col-sm-1 control-label">To:</label>
+										<label for="userToEmail" class="col-sm-1 control-label">To:</label>
 										<div class="col-sm-11">
-											  <input type="email" class="form-control select2-offscreen" id="to" placeholder="Type email" tabindex="-1">
+											  <input type="email" class="form-control select2-offscreen" name="userToEmail" id="userToEmail" placeholder="Type email" tabindex="-1">
 										</div>
 									  </div>
-									<div class="form-group">
-										<label for="cc" class="col-sm-1 control-label">CC:</label>
-										<div class="col-sm-11">
-											  <input type="email" class="form-control select2-offscreen" id="cc" placeholder="Type email" tabindex="-1">
-										</div>
-									  </div>
-									<div class="form-group">
-										<label for="bcc" class="col-sm-1 control-label">BCC:</label>
-										<div class="col-sm-11">
-											  <input type="email" class="form-control select2-offscreen" id="bcc" placeholder="Type email" tabindex="-1">
-										</div>
-									  </div>
-								  
-								</form>
+								</div>
 								
 								<div class="col-sm-11 col-sm-offset-1">
 									
 									<div class="btn-toolbar" role="toolbar">
 										
 										<div class="btn-group">
-											  <button class="btn btn-default"><span class="fa fa-bold"></span></button>
-											  <button class="btn btn-default"><span class="fa fa-italic"></span></button>
-											<button class="btn btn-default"><span class="fa fa-underline"></span></button>
+											  <div id="bold" class="btn btn-default"><span class="fa fa-bold"></span></div>
+											  <div id="italic" class="btn btn-default"><span class="fa fa-italic"></span></div>
+											<div id="underline" class="btn btn-default"><span class="fa fa-underline"></span></div>
 										</div>
 				
 										<div class="btn-group">
-											  <button class="btn btn-default"><span class="fa fa-align-left"></span></button>
-											  <button class="btn btn-default"><span class="fa fa-align-right"></span></button>
-											  <button class="btn btn-default"><span class="fa fa-align-center"></span></button>
-											<button class="btn btn-default"><span class="fa fa-align-justify"></span></button>
+											  <div id="justifyLeft" class="btn btn-default"><span class="fa fa-align-left"></span></div>
+											  <div id="justifyRight" class="btn btn-default"><span class="fa fa-align-right"></span></div>
+											  <div id="justifyCenter" class="btn btn-default"><span class="fa fa-align-center"></span></div>
+                                              <div id="justifyFull" class="btn btn-default"><span class="fa fa-align-justify"></span></div>
 										</div>
 										
 										<div class="btn-group">
-											  <button class="btn btn-default"><span class="fa fa-indent"></span></button>
-											  <button class="btn btn-default"><span class="fa fa-outdent"></span></button>
+											  <div id="indent" class="btn btn-default"><span class="fa fa-indent"></span></div>
+											  <div id="outdent" class="btn btn-default"><span class="fa fa-outdent"></span></div>
 										</div>
 										
 										<div class="btn-group">
-											  <button class="btn btn-default"><span class="fa fa-list-ul"></span></button>
-											  <button class="btn btn-default"><span class="fa fa-list-ol"></span></button>
+											  <div id="unorderedlist" class="btn btn-default"><span class="fa fa-list-ul"></span></div>
+											  <div id="orderedlist" class="btn btn-default"><span class="fa fa-list-ol"></span></div>
 										</div>
-										<button class="btn btn-default"><span class="fa fa-trash-o"></span></button>	
-										<button class="btn btn-default"><span class="fa fa-paperclip"></span></button>
+										<button class="btn btn-default"><span class="fa fa-trash-o"></span></button>
+
+                                        <label class="btn btn-default">
+                                            <div class="add-tooltip" data-original-title="Add Photo" data-toggle="tooltip">
+                                                <span class="fa fa-paperclip"></span></div>
+                                            <input type="file" id="imageList" name="imageList" multiple hidden>
+                                        </label>
+
+
 										<div class="btn-group">
 											<button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="fa fa-tags"></span> <span class="caret"></span></button>
 											<ul class="dropdown-menu">
-												<li><a href="#">add label <span class="label label-danger"> Home</span></a></li>
-												<li><a href="#">add label <span class="label label-info">Job</span></a></li>
-												<li><a href="#">add label <span class="label label-success">Clients</span></a></li>
-												<li><a href="#">add label <span class="label label-warning">News</span></a></li>
+                                                <li id="noLabel"><a>no label<span class="label" style="display: none"></span></a></li>
+												<li id="work"><a>add label <span class="label label-danger">Work</span></a></li>
+												<li id="family"><a>add label <span class="label label-info">Family</span></a></li>
+												<li id="friends"><a>add label <span class="label label-success">Friends</span></a></li>
+												<li id="news"><a>add label <span class="label label-warning">News</span></a></li>
 											</ul>
 										</div>
+                                        <div id="currentLabel" style="margin-top: 8px">
+                                        </div>
 									</div>
 									<br>	
 									
 									<div class="form-group">
-										<textarea class="form-control" id="message" name="body" rows="12" placeholder="Click here to reply"></textarea>
-									</div>
+                                        <div contenteditable="true" class="form-control" id="content"></div >
+
+                                    </div>
 									
 									<div class="form-group">	
-										<button type="submit" class="btn btn-success">Send</button>
+										<button id="sendMessage" class="btn btn-success">Send</button>
 										<button type="submit" class="btn btn-default">Draft</button>
 										<button type="submit" class="btn btn-danger">Discard</button>
 									</div>
 								</div>	
-							</div>	
+							</div>
 						</div>	
 					</div><!--/.col-->	
                 </div>
@@ -191,8 +193,13 @@
 </div>
 </div>
 
-<script type="text/javascript">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script th:inline="javascript">
+    currentUser = /*[[${user}]]*/ 'false';
 </script>
+<script src="/sender/js/send.js"></script>
+<script src="/sender/js/script.js"></script>
 </body>
 </html>

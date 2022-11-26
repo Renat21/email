@@ -23,7 +23,8 @@
                     <aside class="sm-side">
                         <div class="user-head">
                             <a href="javascript:;" class="inbox-avatar">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="img-responsive">
+                                <img th:src="${user.image!=null ? '/image/' + user.image.getId() :
+                                'https://bootdey.com/img/Content/avatar/avatar1.png'}" alt="" class="img-responsive">
                             </a>
                             <div class="user-name">
                                 <h5><a href="#">Jonathan Smith</a></h5>
@@ -109,19 +110,14 @@
                                           th:action="@{/edit/profile} "
                                           th:method="POST">
                                         <h4 style="padding-left: 40px">Смена профиля</h4>
-                                        <div th:if="${errorCurrentPassword}">
+                                        <div th:if="${errorCurrentUsername}">
                                             <div class="alert alert-danger">
-                                                Неверный текущий пароль
+                                                Этот логин уже занят
                                             </div>
                                         </div>
-                                        <div th:if="${errorPassword}">
-                                            <div class="alert alert-danger">
-                                                Новые пароли не совпадают
-                                            </div>
-                                        </div>
-                                        <div th:if="${passwordChanged}">
+                                        <div th:if="${profileChanged}">
                                             <div class="alert alert-success">
-                                                Пароль изменен
+                                                Профиль изменен
                                             </div>
                                         </div>
                                         <fieldset class="mb-xl">

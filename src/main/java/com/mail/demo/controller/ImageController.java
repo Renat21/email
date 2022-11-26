@@ -48,4 +48,19 @@ public class ImageController {
             }
         }).toList();
     }
+
+
+    @RequestMapping(value = "/image/createImage", method = RequestMethod.POST)
+    @ResponseBody
+    public List<Image> createImage(@RequestParam("file") List<MultipartFile> files) {
+        return files.stream().map(file -> {
+            try {
+                Image image = imageService.toImageEntity(file);
+                imageService.save(image);
+                return image;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }).toList();
+    }
 }

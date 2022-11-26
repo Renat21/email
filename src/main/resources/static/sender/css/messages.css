@@ -260,3 +260,24 @@ body{margin-top:20px;
     .inbox .contacts ul li:hover {
         background: #e4e5e6
     }
+
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text);
+    color:#888;
+}
+
+#content{
+    width: 100%;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+
+.message input[type=file] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    position: absolute;
+    z-index: -10;
+}

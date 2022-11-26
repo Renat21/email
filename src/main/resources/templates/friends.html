@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>colored inbox mail list and compose - Bootdey.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+    <link href="/sender/css/messages.css" type="text/css" rel="stylesheet">
+    <link href="/index/style/style.css" type="text/css" rel="stylesheet">
+    <link href="/friend/style/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container bootstrap snippets bootdeys">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box">
+                <!--mail inbox start-->
+                <div class="mail-box">
+                    <aside class="sm-side">
+                        <div class="user-head">
+                            <a href="javascript:;" class="inbox-avatar">
+                                <img th:src="${user.image!=null ? '/image/' + user.image.getId() :
+                                'https://bootdey.com/img/Content/avatar/avatar1.png'}" alt="" class="img-responsive">
+                            </a>
+                            <div class="user-name">
+                                <h5><a href="#">Jonathan Smith</a></h5>
+                                <span><a href="#">jsmith@gmail.com</a></span>
+                            </div>
+                            <a href="javascript:;" class="mail-dropdown pull-right">
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </div>
+                        <div class="inbox-body">
+                            <a class="btn btn-compose" href="/messages">
+                                Compose
+                            </a>
+                        </div>
+
+                        <ul class="inbox-nav inbox-divider">
+                            <li class="active">
+                                <a href="#"><i class="fa fa-inbox"></i> Inbox <span class="label label-danger pull-right">2</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-envelope-o"></i> Sent Mail</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-bookmark-o"></i> Important</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class=" fa fa-external-link"></i> Drafts <span class="label label-info pull-right">30</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class=" fa fa-trash-o"></i> Trash</a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-pills nav-stacked labels-info inbox-divider">
+                            <li> <h4>Labels</h4> </li>
+                            <li> <a href="#"> <i class=" fa fa-sign-blank text-danger"></i> Work </a> </li>
+                            <li> <a href="#"> <i class=" fa fa-sign-blank text-success"></i> Design </a> </li>
+                            <li> <a href="#"> <i class=" fa fa-sign-blank text-info "></i> Family </a>
+                            </li><li> <a href="#"> <i class=" fa fa-sign-blank text-warning "></i> Friends </a>
+                        </li><li> <a href="#"> <i class=" fa fa-sign-blank text-primary "></i> Office </a>
+                        </li>
+                        </ul>
+                        <ul class="nav nav-pills nav-stacked labels-info ">
+                            <li> <h4>Buddy online</h4> </li>
+                            <li> <a href="#"> <i class=" fa fa-circle text-success"></i> Jhone Doe <p>I do not think</p></a>  </li>
+                            <li> <a href="#"> <i class=" fa fa-circle text-danger"></i> Sumon <p>Busy with coding</p></a> </li>
+                            <li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Anjelina Joli <p>I out of control</p></a>
+                            </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Jonathan Smith <p>I am not here</p></a>
+                        </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Tawseef <p>I do not think</p></a>
+                        </li>
+                        </ul>
+                        <div class="inbox-body text-center">
+                            <div class="btn-group">
+                                <a href="javascript:;" class="btn mini btn-primary" data-original-title="" title="">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                            <div class="btn-group">
+                                <a href="javascript:;" class="btn mini btn-success" data-original-title="" title="">
+                                    <i class="fa fa-phone"></i>
+                                </a>
+                            </div>
+                            <div class="btn-group">
+                                <a href="javascript:;" class="btn mini btn-info" data-original-title="" title="">
+                                    <i class="fa fa-cog"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </aside>
+                    <aside class="lg-side">
+                        <div class="inbox-head">
+                            <h3>Inbox</h3>
+                        </div>
+                        <div class="inbox-body">
+                            <div class="col-md-12">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="career-search mb-60">
+
+
+                                                <form action="#" class="career-form mb-60" style="margin-bottom: 30px;">
+
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-lg-5 my-3">
+                                                            <button style="color: #ffffff; background-color: #3448b7" type="button" class="friends btn btn-lg btn-block btn-light btn-custom">
+                                                                friends and strangers
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-md-6 col-lg-3 my-3">
+                                                            <button style="color: #ffffff; background-color: #3448b7" type="button" class="invites btn btn-lg btn-block btn-light btn-custom">
+                                                                invites for you
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row searchForm">
+                                                        <div class="col-md-6 col-lg-9 my-4">
+                                                            <div class="input-group position-relative">
+                                                                <input id="searchLine" type="text" class="form-control" placeholder="Enter Your Keywords">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-lg-3 my-3">
+                                                            <button style="color: #ffffff; background-color: #3448b7" id="searchButton" type="button" class="btn btn-lg btn-block btn-light btn-custom">
+                                                                Search
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                                <div class="filter-result" id="friendLists">
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div><!--/.col-->
+                        </div>
+                    </aside>
+                </div>
+                <!--mail inbox end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/friend/js/friend.js"></script>
+</body>
+</html>

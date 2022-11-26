@@ -43,6 +43,11 @@ public class User implements UserDetails {
     private String surname;
     private String password;
 
+    @OneToOne(targetEntity = Image.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    @JsonIgnoreProperties(value = "bytes", allowSetters = true)
+    private Image image;
+
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "client_role", joinColumns = @JoinColumn(name = "client_id"))
     @Enumerated(EnumType.STRING)
@@ -50,6 +55,7 @@ public class User implements UserDetails {
     private Set<Role> roles = new HashSet<>();
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
     }
@@ -70,21 +76,25 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }

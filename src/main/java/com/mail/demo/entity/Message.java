@@ -2,8 +2,8 @@ package com.mail.demo.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
-import lombok.Setter;
+import com.mail.demo.enumer.MessageType;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "Messages")
 @Getter
 @Setter
-public class Messages {
+public class Message {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -28,6 +28,7 @@ public class Messages {
 
     private String content;
 
+    private MessageType messageType;
 
 
     @OneToMany(fetch = FetchType.EAGER)
@@ -38,6 +39,6 @@ public class Messages {
     )
     private List<Image> images = new ArrayList<>();
 
-    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm")
     private LocalDateTime time;
 }
