@@ -11,6 +11,7 @@
 	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="/sender/css/messages.css" type="text/css" rel="stylesheet">
 	<link href="/index/style/style.css" type="text/css" rel="stylesheet">
+    <link href="/inbox/css/style.css" type="text/css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -118,8 +119,7 @@
                         <div class="col-md-4 text-right">
                             <p id = "messageDate" class="date"></p>
                         </div>
-                        <div class="col-md-12">
-                            <h4></h4>
+                        <div class="col-md-12 borderInBottom">
                         </div>
                     </div>
                     <div class="sender-info">
@@ -136,17 +136,21 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12 borderInBottom">
+                    </div>
                     <div class="view-mail">
 
+                    </div>
+                    <div class="col-md-12 borderInBottom">
                     </div>
                     <div class="attachment-mail">
                         <p>
                             <span id="countAttachments"><i class="fa fa-paperclip"></i></span>
-                            <a href="#">Download all attachments</a>
-                            |
-                            <a href="#">View all images</a>
+                            <a>All attachments</a>
                         </p>
-                        <ul id="attachmentsArray">
+                        <div id="attachmentsDocuments" class="attachments">
+                        </div>
+                        <ul id="attachmentsImages">
 
                         </ul>
                     </div>

@@ -6,6 +6,7 @@ import com.mail.demo.entity.User;
 import com.mail.demo.enumer.MessageType;
 import com.mail.demo.service.MessageService;
 import com.mail.demo.service.UserService;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -57,5 +58,31 @@ public class MessagesController {
     public List<Message> showMessages(@AuthenticationPrincipal User user, @PathVariable int page)
     {
         return messageService.showLastMessages(user,page);
+    }
+
+    @PostMapping("/messagesSend/{page}")
+    @ResponseBody
+    public List<Message> showSendMessages(@AuthenticationPrincipal User user, @PathVariable int page)
+    {
+        return messageService.showLastSendMessages(user,page);
+    }
+
+    @PostMapping("/readMessage/{messageId}")
+    @ResponseBody
+    public void readMessage(@AuthenticationPrincipal User user, @PathVariable Long messageId){
+        messageService.readMessage(user, messageId);
+    }
+    @PostMapping("/deleteReceivedMessages")
+    @ResponseBody
+    public String deleteReceivedMessage(@AuthenticationPrincipal User user, @RequestBody String body){
+        messageService.deleteReceivedMessagesMessages(user, new JSONObject(body).getJSONArray("messages"));
+        return body;
+    }
+
+    @PostMapping("/deleteSendMessages")
+    @ResponseBody
+    public String deleteSendMessage(@AuthenticationPrincipal User user, @RequestBody String body){
+        messageService.deleteSendMessagesMessages(user, new JSONObject(body).getJSONArray("messages"));
+        return body;
     }
 }

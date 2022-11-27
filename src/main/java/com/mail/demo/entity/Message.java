@@ -2,6 +2,7 @@ package com.mail.demo.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.mail.demo.enumer.MessageDeleted;
 import com.mail.demo.enumer.MessageType;
 import lombok.*;
 
@@ -30,6 +31,11 @@ public class Message {
 
     private MessageType messageType;
 
+    private boolean messageRead = false;
+
+    private boolean star = false;
+
+    private MessageDeleted messageDeleted = MessageDeleted.NOT_DELETED;
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(

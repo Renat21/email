@@ -1,22 +1,13 @@
-let stompClientPost
 let currentLocation = document.location.protocol + "//" + document.location.host;
-let page = 1
 let messages = document.querySelector(".messages")
 
 function getRandomInt() {
     return Math.floor(Math.random() * 6 + 1);
 }
 
-function setRead(div, message){
-    if (message["userTo"]["id"] === currentUser["id"] && message["messageRead"] === false)
-        div.classList.add("unread")
-    return div
-}
-
 function addMessageBlock(message) {
     console.log(message)
     var div = document.createElement('tr');
-    div = setRead(div, message)
     const help = document.createElement('div');
     help.innerHTML = message["content"].replace("<br>", " ")
     message["content"] = help.innerText
@@ -66,37 +57,16 @@ function addMessageBlock(message) {
         div.querySelector("#inbox-small-cells").innerHTML = "<i class=\"fa fa-paperclip\"></i>"
 
     $(div.querySelectorAll(".view-message")).on('click', function () {
-        createAjaxQuery("/readMessage/" + message["id"])
         window.location = '/inbox/' + message["id"];
     })
     messages.insertBefore(div, messages.firstChild);
 }
 
 
-const message_connect = function () {
-    if (currentUser) {
-        const socket = new SockJS('/message-mail')
-        stompClientPost = Stomp.over(socket)
-        stompClientPost.connect({}, onPostConnected, onPostError)
-    }
-}
-
-const onPostConnected = function () {
-    stompClientPost.subscribe('/topic/messageMail/' + currentUser["email"], OnMessageReceived)
-}
-
-const OnMessageReceived = function (data) {
-    addMessageBlock(JSON.parse(data["body"]))
-}
-
-const onPostError = (error) => {
-    console.log(error)
-}
-
 document.querySelector("#deleteMessages").addEventListener('click', deleteMessages, true)
 
 function deleteMessages() {
-    createAjaxQueryWithData("/deleteReceivedMessages", deleteMessagesFromPage,  {"messages":getMarkedCheckBoxes()})
+    createAjaxQueryWithData("/deleteSendMessages", deleteMessagesFromPage,  {"messages":getMarkedCheckBoxes()})
 }
 
 function deleteMessagesFromPage(data) {
@@ -120,7 +90,7 @@ function getMarkedCheckBoxes(){
 
 
 $(function (){
-    createAjaxQuery("/messages/0", successMessageHandler)
+    createAjaxQuery("/messagesSend/0", successMessageHandler)
 })
 
 // Запрос на получение друзей
@@ -147,11 +117,7 @@ function createAjaxQuery(url, toFunction) {
 
 // Получение информации и добавление заявок
 var successMessageHandler = function (data) {
-    messages.innerHTML = ""
     for (let i = 0; i < data.length; i++) {
         addMessageBlock(data[i])
     }
 };
-
-
-document.addEventListener('DOMContentLoaded', message_connect, true)

@@ -15,6 +15,11 @@ const message_connect = function () {
 }
 
 document.querySelector("#sendMessage").addEventListener("click", message_connect, true)
+document.querySelector("#deleteFiles").addEventListener("click", delete_files, true)
+
+function delete_files() {
+    document.querySelector("#imageList").value = ''
+}
 
 const onPostConnected = function () {
     stompClientPost.subscribe('/topic/messageMail/' + userEmail)
