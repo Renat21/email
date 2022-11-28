@@ -31,8 +31,8 @@
                                 'https://bootdey.com/img/Content/avatar/avatar1.png'}" alt="" class="img-responsive">
                         </a>
                         <div class="user-name">
-                            <h5><a href="#">Jonathan Smith</a></h5>
-                            <span><a href="#">jsmith@gmail.com</a></span>
+                            <h5><a href="/profile" th:text="${user.name + '' + user.surname}"></a></h5>
+                            <span><a href="/profile" th:text="${user.email}">jsmith@gmail.com</a></span>
                         </div>
                         <a href="javascript:;" class="mail-dropdown pull-right">
                             <i class="fa fa-chevron-down"></i>
@@ -45,17 +45,17 @@
                     </div>
 
                     <ul class="inbox-nav inbox-divider">
-                        <li class="active">
-                            <a href="#"><i class="fa fa-inbox"></i> Inbox <span class="label label-danger pull-right">2</span></a>
+                        <li>
+                            <a href="/"><i class="fa fa-inbox"></i> Inbox</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-envelope-o"></i> Sent Mail</a>
+                            <a href="/sendMail"><i class="fa fa-envelope-o"></i> Sent Mail</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bookmark-o"></i> Important</a>
+                            <a href="/profile"><i class="fa fa-bookmark-o"></i> Profile</a>
                         </li>
                         <li>
-                            <a href="#"><i class=" fa fa-external-link"></i> Drafts <span class="label label-info pull-right">30</span></a>
+                            <a href="/friends"><i class=" fa fa-external-link"></i> Friends</a>
                         </li>
                         <li>
                             <a href="#"><i class=" fa fa-trash-o"></i> Trash</a>
@@ -67,8 +67,8 @@
                         <li> <a href="#"> <i class=" fa fa-sign-blank text-success"></i> Design </a> </li>
                         <li> <a href="#"> <i class=" fa fa-sign-blank text-info "></i> Family </a>
                         </li><li> <a href="#"> <i class=" fa fa-sign-blank text-warning "></i> Friends </a>
-                        </li><li> <a href="#"> <i class=" fa fa-sign-blank text-primary "></i> Office </a>
-                        </li>
+                    </li><li> <a href="#"> <i class=" fa fa-sign-blank text-primary "></i> Office </a>
+                    </li>
                     </ul>
                     <ul class="nav nav-pills nav-stacked labels-info ">
                         <li> <h4>Buddy online</h4> </li>
@@ -76,8 +76,8 @@
                         <li> <a href="#"> <i class=" fa fa-circle text-danger"></i> Sumon <p>Busy with coding</p></a> </li>
                         <li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Anjelina Joli <p>I out of control</p></a>
                         </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Jonathan Smith <p>I am not here</p></a>
-                        </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Tawseef <p>I do not think</p></a>
-                        </li>
+                    </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Tawseef <p>I do not think</p></a>
+                    </li>
                     </ul>
                     <div class="inbox-body text-center">
                         <div class="btn-group">
@@ -125,7 +125,8 @@
                     <div class="sender-info">
                         <div class="row">
                             <div class="col-md-12">
-                                <img alt="" src="https://bootdey.com/img/Content/avatar/avatar6.png">
+                                <img alt="" th:src="${message.userFrom.image!=null ? '/image/' + message.userFrom.image.getId() :
+                                'https://bootdey.com/img/Content/avatar/avatar1.png'}">
                                 <strong id="messageFromName"></strong>
                                 <span id="messageFromEmail"></span>
                                 to

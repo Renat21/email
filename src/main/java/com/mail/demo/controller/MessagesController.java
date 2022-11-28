@@ -53,18 +53,18 @@ public class MessagesController {
         return message;
     }
 
-    @PostMapping("/messages/{page}")
+    @PostMapping("/messages/{page}/{searchLine}")
     @ResponseBody
-    public List<Message> showMessages(@AuthenticationPrincipal User user, @PathVariable int page)
+    public List<Message> showMessages(@AuthenticationPrincipal User user, @PathVariable int page, @PathVariable String searchLine)
     {
-        return messageService.showLastMessages(user,page);
+        return messageService.showLastMessages(user,page, searchLine);
     }
 
-    @PostMapping("/messagesSend/{page}")
+    @PostMapping("/messagesSend/{page}/{searchLine}")
     @ResponseBody
-    public List<Message> showSendMessages(@AuthenticationPrincipal User user, @PathVariable int page)
+    public List<Message> showSendMessages(@AuthenticationPrincipal User user, @PathVariable int page, @PathVariable String searchLine)
     {
-        return messageService.showLastSendMessages(user,page);
+        return messageService.showLastSendMessages(user,page, searchLine);
     }
 
     @PostMapping("/readMessage/{messageId}")
@@ -72,6 +72,25 @@ public class MessagesController {
     public void readMessage(@AuthenticationPrincipal User user, @PathVariable Long messageId){
         messageService.readMessage(user, messageId);
     }
+
+    @PostMapping("/setStarMessage/{messageId}")
+    @ResponseBody
+    public void setStarMessage(@AuthenticationPrincipal User user, @PathVariable Long messageId){
+        messageService.setStarMessage(user, messageId);
+    }
+
+    @PostMapping("/getMessagesReceived/{searchLine}")
+    @ResponseBody
+    public Long getMessageReceived(@AuthenticationPrincipal User user, @PathVariable String searchLine){
+        return messageService.getMessagesReceived(user, searchLine);
+    }
+
+    @PostMapping("/getMessagesSend/{searchLine}")
+    @ResponseBody
+    public Long getMessageSent(@AuthenticationPrincipal User user, @PathVariable String searchLine){
+        return messageService.getMessagesSent(user, searchLine);
+    }
+
     @PostMapping("/deleteReceivedMessages")
     @ResponseBody
     public String deleteReceivedMessage(@AuthenticationPrincipal User user, @RequestBody String body){

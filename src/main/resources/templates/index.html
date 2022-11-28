@@ -26,8 +26,8 @@
                                 'https://bootdey.com/img/Content/avatar/avatar1.png'}" alt="" class="img-responsive">
                         </a>
                         <div class="user-name">
-                            <h5><a href="/profile">Jonathan Smith</a></h5>
-                            <span><a href="/profile">jsmith@gmail.com</a></span>
+                            <h5><a href="/profile" th:text="${user.name + '' + user.surname}"></a></h5>
+                            <span><a href="/profile" th:text="${user.email}"></a></span>
                         </div>
                         <a href="javascript:;" class="mail-dropdown pull-right">
                             <i class="fa fa-chevron-down"></i>
@@ -41,7 +41,7 @@
 
                     <ul class="inbox-nav inbox-divider">
                         <li class="active">
-                            <a href="#"><i class="fa fa-inbox"></i> Inbox <span class="label label-danger pull-right">2</span></a>
+                            <a href="/"><i class="fa fa-inbox"></i> Inbox</a>
                         </li>
                         <li>
                             <a href="/sendMail"><i class="fa fa-envelope-o"></i> Sent Mail</a>
@@ -97,8 +97,8 @@
                     <h3>Inbox</h3>
                     <form class="pull-right position" action="#">
                         <div class="input-append">
-                            <input type="text" placeholder="Search Mail" class="sr-input">
-                            <button type="button" class="btn sr-btn" data-original-title="" title=""><i class="fa fa-search"></i></button>
+                            <input id="searchLine" type="text" placeholder="Search Mail" class="sr-input">
+                            <button id="searchButton" type="button" class="btn sr-btn" data-original-title="" title=""><i class="fa fa-search"></i></button>
                         </div>
                     </form>
                 </div>
@@ -131,12 +131,12 @@
                         </ul>
                     </div>
                     <ul class="unstyled inbox-pagination">
-                        <li><span>1-50 of 234</span></li>
+                        <li><span id="messageParameters"></span></li>
                         <li>
-                            <a href="#" class="np-btn"><i class="fa fa-angle-left  pagination-left"></i></a>
+                            <a id="previousPage" class="np-btn"><i class="fa fa-angle-left  pagination-left"></i></a>
                         </li>
                         <li>
-                            <a href="#" class="np-btn"><i class="fa fa-angle-right pagination-right"></i></a>
+                            <a id="nextPage" class="np-btn"><i class="fa fa-angle-right pagination-right"></i></a>
                         </li>
                     </ul>
                 </div>

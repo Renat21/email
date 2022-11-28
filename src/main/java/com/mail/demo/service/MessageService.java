@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,14 +44,38 @@ public class MessageService {
         messageRepository.save(message);
     }
 
-    public List<Message> showLastMessages(User user, int page) {
-        Pageable pageable = PageRequest.of(page, MESSAGE_PAGE_SIZE);
-        return messageRepository.findAllByUserTo(user, pageable);
+    public List<Message> showLastMessages(User user, int page, String searchLine) {
+        Pageable pageable = PageRequest.of(page, MESSAGE_PAGE_SIZE, Sort.by("time").descending());
+        if (Objects.equals(searchLine, "default")) {
+            return messageRepository.findAllByUserTo(user, pageable);
+        }else {
+            return messageRepository.findAllByUserToWithSearch(user, searchLine, pageable);
+        }
     }
 
-    public List<Message> showLastSendMessages(User user, int page) {
-        Pageable pageable = PageRequest.of(page, MESSAGE_PAGE_SIZE);
-        return messageRepository.findAllByUserFrom(user, pageable);
+    public Long getMessagesReceived(User user, String searchLine){
+        if (Objects.equals(searchLine, "default")) {
+            return messageRepository.findCountByUserTo(user);
+        }else {
+            return messageRepository.findCountByUserToWithSearch(user, searchLine);
+        }
+    }
+
+    public List<Message> showLastSendMessages(User user, int page, String searchLine) {
+        Pageable pageable = PageRequest.of(page, MESSAGE_PAGE_SIZE, Sort.by("time").descending());
+        if (Objects.equals(searchLine, "default")) {
+            return messageRepository.findAllByUserFrom(user, pageable);
+        }else {
+            return messageRepository.findAllByUserFromWithSearch(user, searchLine, pageable);
+        }
+    }
+
+    public Long getMessagesSent(User user, String searchLine){
+        if (Objects.equals(searchLine, "default")) {
+            return messageRepository.findCountByUserFrom(user);
+        }else {
+            return messageRepository.findCountByUserFromWithSearch(user, searchLine);
+        }
     }
 
     public void readMessage(User user, Long messageId){
@@ -61,16 +86,25 @@ public class MessageService {
         }
     }
 
+    public void setStarMessage(User user, Long messageId){
+        Message message = messageRepository.findMessageById(messageId);
+        if (Objects.equals(message.getUserTo().getId(), user.getId()) && !message.isStar()){
+            message.setStar(true);
+            save(message);
+        }else if (Objects.equals(message.getUserTo().getId(), user.getId()) && message.isStar()){
+            message.setStar(false);
+            save(message);
+        }
+    }
+
     @Transactional
     public void deleteMessageFromReceivedMessages(User user, Message message){
         if (Objects.equals(message.getMessageDeleted(), MessageDeleted.NOT_DELETED)){
-            message.setUserTo(null);
             message.setMessageDeleted(MessageDeleted.USER_TO);
             save(message);
         }else if (Objects.equals(message.getMessageDeleted(), MessageDeleted.USER_FROM))
         {
             message.setImages(new ArrayList<>());
-            message.setUserTo(null);
             save(message);
             messageRepository.delete(message);
         }
@@ -84,13 +118,11 @@ public class MessageService {
     @Transactional
     public void deleteMessageFromSendMessages(User user, Message message){
         if (Objects.equals(message.getMessageDeleted(), MessageDeleted.NOT_DELETED)){
-            message.setUserFrom(null);
             message.setMessageDeleted(MessageDeleted.USER_FROM);
             save(message);
         }else if (Objects.equals(message.getMessageDeleted(), MessageDeleted.USER_TO))
         {
             message.setImages(new ArrayList<>());
-            message.setUserFrom(null);
             save(message);
             messageRepository.delete(message);
         }
@@ -104,5 +136,6 @@ public class MessageService {
     public Message getMessageById(Long messageId){
         return messageRepository.findMessageById(messageId);
     }
+
 }
 

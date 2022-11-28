@@ -33,8 +33,8 @@
                                 'https://bootdey.com/img/Content/avatar/avatar1.png'}" alt="" class="img-responsive">
                             </a>
                             <div class="user-name">
-                                <h5><a href="#">Jonathan Smith</a></h5>
-                                <span><a href="#">jsmith@gmail.com</a></span>
+                                <h5><a href="/profile" th:text="${user.name + '' + user.surname}"></a></h5>
+                                <span><a href="/profile" th:text="${user.email}">jsmith@gmail.com</a></span>
                             </div>
                             <a href="javascript:;" class="mail-dropdown pull-right">
                                 <i class="fa fa-chevron-down"></i>
@@ -47,17 +47,17 @@
                         </div>
 
                         <ul class="inbox-nav inbox-divider">
+                            <li>
+                                <a href="/"><i class="fa fa-inbox"></i> Inbox</a>
+                            </li>
+                            <li>
+                                <a href="/sendMail"><i class="fa fa-envelope-o"></i> Sent Mail</a>
+                            </li>
+                            <li>
+                                <a href="/profile"><i class="fa fa-bookmark-o"></i> Profile</a>
+                            </li>
                             <li class="active">
-                                <a href="#"><i class="fa fa-inbox"></i> Inbox <span class="label label-danger pull-right">2</span></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-envelope-o"></i> Sent Mail</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-bookmark-o"></i> Important</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class=" fa fa-external-link"></i> Drafts <span class="label label-info pull-right">30</span></a>
+                                <a href="/friends"><i class=" fa fa-external-link"></i> Friends</a>
                             </li>
                             <li>
                                 <a href="#"><i class=" fa fa-trash-o"></i> Trash</a>

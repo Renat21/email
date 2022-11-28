@@ -1,7 +1,13 @@
 let stompClientPost
 let currentLocation = document.location.protocol + "//" + document.location.host;
-let page = 1
 let messages = document.querySelector(".messages")
+let messageParameters = document.querySelector("#messageParameters")
+let searchLine = document.querySelector("#searchLine")
+
+let countOfMessagesReceived = 0;
+let messagesCountNow = 15
+let page = 0
+
 
 function getRandomInt() {
     return Math.floor(Math.random() * 6 + 1);
@@ -32,11 +38,14 @@ function addMessageBlock(message) {
         "                                <td class=\"inbox-small-cells\"><i class=\"fa fa-star\"></i></td>\n" +
         "                                <td class=\"view-message\"><img style=\"width: 25px;height: 25px\" src=\"" + source + "\" class=\"img-responsive\" alt=\"\"></td>\n" +
         "                                <td class=\"view-message dont-show\">" + message["userFrom"]["name"] + " " + message["userFrom"]["surname"] +"</td>\n" +
-        "                                <td class=\"view-message\">" + message["content"].slice(0, 25).trim() +"</td>\n" +
+        "                                <td class=\"view-message messageContent\"></td>\n" +
         "                                <td id=\"inbox-small-cells\" class=\"view-message inbox-small-cells\"></td>\n" +
         "                                <td class=\"view-message text-right\">" + message["time"].split(" ")[1] + "</td>";
 
 
+    div.querySelector(".messageContent").innerText = message["content"].slice(0, 25).trim()
+    if (message["star"] === true)
+        div.querySelector(".fa-star").classList.add("inbox-started")
     const span = document.createElement('span')
     if (message["messageType"]) {
         if (message["messageType"] === "FRIENDS")
@@ -69,6 +78,16 @@ function addMessageBlock(message) {
         createAjaxQuery("/readMessage/" + message["id"])
         window.location = '/inbox/' + message["id"];
     })
+
+    $(div.querySelector(".fa-star")).on('click', function () {
+        createAjaxQuery("/setStarMessage/" + message["id"])
+        let star = document.querySelector("#messageId_" + message["id"]).parentNode.parentNode.querySelector(".fa-star")
+        if (star.classList.contains("inbox-started"))
+            star.classList.remove("inbox-started")
+        else
+            star.classList.add("inbox-started")
+    })
+
     messages.insertBefore(div, messages.firstChild);
 }
 
@@ -118,10 +137,38 @@ function getMarkedCheckBoxes(){
     return messages
 }
 
+document.querySelector("#searchButton").addEventListener('click' , function (){
+                                                updateFullPage(0)
+                                            }, true)
+
+
+document.querySelector("#previousPage").addEventListener("click", function (){
+                                                updateFullPage(page - 1)
+                                            }, true)
+document.querySelector("#nextPage").addEventListener("click", function () {
+                                                updateFullPage(page + 1)
+                                            }, true)
+
+function updateMessagesByPage(newPage){
+
+    if (newPage * messagesCountNow + 1 <= countOfMessagesReceived && newPage >= 0) {
+        createAjaxQuery("/messages/" + newPage + "/" + (searchLine.value !== "" ?  searchLine.value: "default"), successMessageHandler)
+        page = newPage
+    }
+}
+
 
 $(function (){
-    createAjaxQuery("/messages/0", successMessageHandler)
+    updateFullPage(0)
 })
+
+function updateFullPage(newPage){
+    createAjaxQuery("/getMessagesReceived/" +  (searchLine.value !== "" ?  searchLine.value: "default"),
+        function (data){
+            countOfMessagesReceived = data
+            updateMessagesByPage(newPage)
+        })
+}
 
 // Запрос на получение друзей
 function createAjaxQueryWithData(url, toFunction, request) {
@@ -147,11 +194,18 @@ function createAjaxQuery(url, toFunction) {
 
 // Получение информации и добавление заявок
 var successMessageHandler = function (data) {
+    setPageParameters()
     messages.innerHTML = ""
     for (let i = 0; i < data.length; i++) {
         addMessageBlock(data[i])
     }
 };
+
+function setPageParameters() {
+    messageParameters.innerHTML = (page * messagesCountNow + 1) + "-" + (
+        (page + 1) * messagesCountNow > countOfMessagesReceived
+            ? countOfMessagesReceived: (page + 1) * messagesCountNow) + " of " + countOfMessagesReceived
+}
 
 
 document.addEventListener('DOMContentLoaded', message_connect, true)
